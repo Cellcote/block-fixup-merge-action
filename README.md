@@ -74,6 +74,7 @@ is using `git rebase` to edit commits during the code review; this becomes
 confusing for reviewers, commits can suddenly disappear. "Fixup Commits" are
 better.
 
+
 Fixup Commits can be added to the end of the git history during a code review, then
 squashed into their respective commits after the PR is approved. The workflow
 is:
