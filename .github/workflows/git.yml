@@ -4,9 +4,9 @@ on: [pull_request]
 
 jobs:
   block-fixup:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2.0.0 # Always pin
+    - uses: actions/checkout@v6.0.0 # Always pin
     - name: Block Fixup/Squash Merge
-      uses: 13rac1/block-fixup-merge-action@master
+      uses: cellcote/block-fixup-merge-action@master
