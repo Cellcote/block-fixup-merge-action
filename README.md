@@ -9,6 +9,10 @@ Have I got a Github Action for you!
 This Action is as an assistant to be sure you squash fixup commits before
 merging to your main branch.
 
+## Credits
+
+This project is a fork of the original [block-fixup-merge-action](https://github.com/13rac1/block-fixup-merge-action) created by [Brad Erickson](https://github.com/13rac1). All credit for the original concept and implementation goes to Brad.
+
 ## Background
 
 * [The Git fixup workflow](https://dev.to/koffeinfrei/the-git-fixup-workflow-386d)
@@ -32,9 +36,9 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - uses: actions/checkout@v2.0.0
+    - uses: actions/checkout@v6.0.0
     - name: Block Fixup Commit Merge
-      uses: 13rac1/block-fixup-merge-action@v2.0.0
+      uses: cellcote/block-fixup-merge-action@v2.0.0
 ```
 
 Optionally, setup Branch Protection to block merging of PRs against the `master`
@@ -42,7 +46,7 @@ branch with `fixup!` commits.
 
 [Example PR blocked by a `fixup!` commit:][example-pr]
 
-[example-pr]:https://github.com/13rac1/block-fixup-merge-action/pull/1
+[example-pr]:https://github.com/cellcote/block-fixup-merge-action/pull/1
 
 [![PR merge blocked](images/block-fixup-example.png?raw=true)](images/block-fixup-example.png?raw=true)
 
@@ -59,7 +63,7 @@ CurrentCoWorkers™ needs to know the end result of each change, but no one
 cares about edits required to make that change. We just want to read the book,
 no one cares what the editor told the author while writing the book.
 
-One solution is to use Github's "Squash merge" feature. This works well for
+One solution is to use Github's "Squash merge" feature. This works well for   
 small PRs. A few small commits can be squashed into a single commit. The "edits"
 removed.
 
