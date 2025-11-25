@@ -2,6 +2,9 @@
 set -eo pipefail
 
 main() {
+  # Fix for Git 2.35.2+ security check on repository ownership in Docker containers
+  git config --global --add safe.directory /github/workspace
+
   PR_REF="${GITHUB_REF%/merge}/head"
   BASE_REF="${GITHUB_BASE_REF}"
 
@@ -20,7 +23,7 @@ main() {
   # Get the list before the "|| true" to fail the script when the git cmd fails.
   COMMIT_LIST=`/usr/bin/git log --pretty=format:%s __ci_base..__ci_pr`
 
-  FIXUP_COUNT=`echo $COMMIT_LIST | grep fixup! | wc -l || true`
+  FIXUP_COUNT=`echo "$COMMIT_LIST" | grep fixup! | wc -l || true`
   echo "Fixup! commits: $FIXUP_COUNT"
   if [[ "$FIXUP_COUNT" -gt "0" ]]; then
     /usr/bin/git log --pretty=format:%s __ci_base..__ci_pr | grep fixup!
@@ -28,7 +31,7 @@ main() {
     exit 1
   fi
 
-  SQUASH_COUNT=`echo $COMMIT_LIST | grep squash! | wc -l || true`
+  SQUASH_COUNT=`echo "$COMMIT_LIST" | grep squash! | wc -l || true`
   echo "Squash! commits: $SQUASH_COUNT"
   if [[ "$SQUASH_COUNT" -gt "0" ]]; then
     /usr/bin/git log --pretty=format:%s __ci_base..__ci_pr | grep squash!

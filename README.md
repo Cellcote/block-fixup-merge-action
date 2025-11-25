@@ -33,12 +33,12 @@ on: [pull_request]
 
 jobs:
   block-fixup:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v6.0.0
     - name: Block Fixup Commit Merge
-      uses: cellcote/block-fixup-merge-action@v2.0.0
+      uses: cellcote/block-fixup-merge-action@master
 ```
 
 Optionally, setup Branch Protection to block merging of PRs against the `master`
@@ -67,14 +67,14 @@ One solution is to use Github's "Squash merge" feature. This works well for
 small PRs. A few small commits can be squashed into a single commit. The "edits"
 removed.
 
-The problem occcurs when you have multiple unique commits a PR: a dependency
+The problem occurs when you have multiple unique commits a PR: a dependency
 update, followed by a refactor, then a bug fix. It is all one contained change,
 but FutureYou™ may just want to see that bug fix. Keep it separate. A solution
 is using `git rebase` to edit commits during the code review; this becomes
 confusing for reviewers, commits can suddenly disappear. "Fixup Commits" are
 better.
 
-Fixup Commits can added to the end of the git history during a code review, then
+Fixup Commits can be added to the end of the git history during a code review, then
 squashed into their respective commits after the PR is approved. The workflow
 is:
 
